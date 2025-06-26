@@ -4,8 +4,9 @@ export default interface Blog {
     id: number,
     name: string,
     tagline: string,
-    pulbicationDate: string,
+    publicationDate: string,
     rating: number,
     numComments: number,
+    body: string,
     authors: Array<Author>
 }

@@ -1,16 +1,38 @@
 import type Blog from "../../../../types/Blog"
+import { 
+    MessageCircleMore,
+    User,
+    CalendarDays,
+    Star
+} from 'lucide-react';
+
+
+
+import "./BlogHeader.css";
 
 type BlogProps = { blog: Blog }
 
 export default function BlogHeader({blog}: BlogProps) {
-    return <div>
-        <h2>{blog.name}:</h2>
-        <h3>{blog.tagline}</h3>
-        <div>
-            <span>{blog.authors.map(author => author.name).join(", ")}</span>
-            <span>{blog.pulbicationDate}</span>
-            <span>{blog.rating}</span>
-            <span>{blog.numComments}</span>
+    return <div className="blog-header-container">
+        <h2 className="blog-name">{blog.name}:</h2>
+        <h3 className="blog-tagline">{blog.tagline}</h3>
+        <div className="blog-details">
+            <span className="blog-authors">
+                <User className="blog-icon" />
+                {blog.authors.map(author => author.name).join(", ")}
+            </span>
+            <span className="blog-publication-date">
+                <CalendarDays className="blog-icon" />
+                {blog.publicationDate}
+            </span>
+            <span className="blog-rating">
+                <Star className="blog-icon" />
+                {blog.rating} Rating
+            </span>
+            <span className="blog-num-comments">
+                <MessageCircleMore className="blog-icon blog-comments-icon" />
+                {blog.numComments} Comments
+            </span>
         </div>
     </div>
 }
