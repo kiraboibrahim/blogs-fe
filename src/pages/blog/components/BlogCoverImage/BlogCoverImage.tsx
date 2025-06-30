@@ -1,11 +1,11 @@
 import blogCoverImage from "../../../../assets/blog-cover-img.jpg"
-import "./BlogCoverImage.css";
+import styles from "./BlogCoverImage.module.css";
 
 
 export default function BlogCoverImage() {
     return (
-        <div className="blog-cover-image-container">
-            <img className="blog-cover-image" src={blogCoverImage} alt="Blog Cover" />
+        <div className={styles.blogCoverImageContainer}>
+            <img className={styles.blogCoverImage} src={blogCoverImage} alt="Blog Cover" />
         </div>
     );
 }

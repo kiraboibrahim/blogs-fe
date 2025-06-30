@@ -1,35 +1,35 @@
-.blog-name {
+.blogName {
     text-align: center;
     font-size: 2.5rem;
 }
 
-.blog-tagline {
+.blogTagline {
     text-align: center;
     font-size: 1.5rem;
     color: #9a9898;
 }
 
-.blog-details {
+.blogDetails {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
 }
 
-.blog-authors,
-.blog-publication-date,
-.blog-rating,
-.blog-num-comments {
+.blogAuthors,
+.blogPublicationDate,
+.blogRating,
+.blogNumComments {
     font-size: 1rem;
     color: #6c757d;
     display: flex;
     align-items: center;
 }
 
-.blog-icon {
+.blogIcon {
     margin-right: 0.5rem;
 }
-.blog-header-container {
+.blogHeaderContainer {
     margin-bottom: 2rem;
     padding: 1rem;
 }

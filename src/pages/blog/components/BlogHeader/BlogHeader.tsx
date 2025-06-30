@@ -5,32 +5,29 @@ import {
     CalendarDays,
     Star
 } from 'lucide-react';
-
-
-
-import "./BlogHeader.css";
+import styles from "./BlogHeader.module.css";
 
 type BlogProps = { blog: Blog }
 
 export default function BlogHeader({blog}: BlogProps) {
-    return <div className="blog-header-container">
-        <h2 className="blog-name">{blog.name}:</h2>
-        <h3 className="blog-tagline">{blog.tagline}</h3>
-        <div className="blog-details">
-            <span className="blog-authors">
-                <User className="blog-icon" />
+    return <div className={styles.blogHeaderContainer}>
+        <h2 className={styles.blogName}>{blog.name}:</h2>
+        <h3 className={styles.blogTagline}>{blog.tagline}</h3>
+        <div className={styles.blogDetails}>
+            <span className={styles.blogAuthors}>
+                <User className={styles.blogIcon} />
                 {blog.authors.map(author => author.name).join(", ")}
             </span>
-            <span className="blog-publication-date">
-                <CalendarDays className="blog-icon" />
+            <span className={styles.blogPublicationDate}>
+                <CalendarDays className={styles.blogIcon} />
                 {blog.publicationDate}
             </span>
-            <span className="blog-rating">
-                <Star className="blog-icon" />
+            <span className={styles.blogRating}>
+                <Star className={styles.blogIcon} />
                 {blog.rating} Rating
             </span>
-            <span className="blog-num-comments">
-                <MessageCircleMore className="blog-icon blog-comments-icon" />
+            <span className={styles.blogNumComments}>
+                <MessageCircleMore className={styles.blogIcon} />
                 {blog.numComments} Comments
             </span>
         </div>
