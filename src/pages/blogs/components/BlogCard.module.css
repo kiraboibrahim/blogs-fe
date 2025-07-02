@@ -1,5 +1,5 @@
 .blogCard {
-    background-color: rgba(70, 69, 69, 0.466);
+    background-color: rgba(59, 59, 59, 0.466);
     border-radius: 10px;
 }
 .blogCoverImageContainer {
@@ -18,17 +18,35 @@
 .blogDetails {
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 10px;
 }
-.blogIcon {
+.blogPublicationDate,
+.blogRating,
+.blogNumComments {
     display: flex;
     align-items: center;
-    font-size: 0.875rem;
+    font-size: 0.775rem;
     gap: 10px;
+}
+.blogIcon svg{
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+}
+
+.dateIcon {
+    color: #4bddbd;
+}
+.ratingIcon {
+    color: #f0b90b;
+}
+.commentsIcon {
+    color: #f04e4e;
 }
 .blogName {
     font-size: 1rem;
     font-weight: bold;
+    height: 3.4em;
     margin: 0;
 }
 
@@ -39,6 +57,7 @@
 
 .blogMeta {
     display: grid;
+    flex-wrap: wrap;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 10px;
     column-gap: 10px;
@@ -55,7 +74,7 @@
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
-    font-size: 0.875rem;
+    font-size: 0.775rem;
     cursor: pointer;
 }
 .blogReadMoreButton:hover {
