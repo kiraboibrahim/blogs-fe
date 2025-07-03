@@ -29,6 +29,19 @@
 .blogIcon {
     margin-right: 0.5rem;
 }
+
+.userIcon {
+    color: #5360da;
+}
+.dateIcon {
+    color: #4bddbd;
+}
+.ratingIcon {
+    color: #f0b90b;
+}
+.commentsIcon {
+    color: #f04e4e;
+}
 .blogHeaderContainer {
     margin-bottom: 2rem;
     padding: 1rem;
