@@ -11,8 +11,10 @@ export default function Blog({blog}: BlogProps) {
     return (
         <div className={styles.blog}>
             <BlogHeader blog={blog} />
-            <BlogCoverImage />
-            <BlogBody body={blog.body} />
+            <div className={styles.coverImageAndBody}>
+                <BlogCoverImage />
+                <BlogBody body={blog.body} />
+            </div>
         </div>
     )
 }

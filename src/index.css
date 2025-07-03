@@ -6,65 +6,105 @@
   font-weight: 400;
   font-style: normal;
   line-height: 1.5;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Light and Dark color definitions */
+  --light-bg-primary: #ffffff;
+  --light-bg-secondary: #f8fafc;
+  --light-bg-tertiary: #f1f5f9;
+  --light-bg-card: #ffffff;
+  --light-bg-surface: #fefeff;
+  --light-bg-hover: #f1f5f9;
+  
+  --light-bg-accent-primary: #f3f4f6;
+  --light-bg-accent-secondary: #e5e7eb;
+  --light-bg-accent-tertiary: #f9fafb;
+  
+  --light-text-primary: #1e293b;
+  --light-text-secondary: #334155;
+  --light-text-tertiary: #475569;
+  --light-text-muted: #64748b;
+  --light-text-disabled: #94a3b8;
+  
+  --light-text-accent: #6366f1;
+  --light-text-accent-hover: #4f46e5;
+  --light-text-link: #8b5cf6;
+  --light-text-link-hover: #7c3aed;
+  
+  --light-border-primary: #e2e8f0;
+  --light-border-secondary: #cbd5e1;
+  --light-border-accent: #a855f7;
+  
+  --dark-bg-primary: #1a1625;
+  --dark-bg-secondary: #2d2438;
+  --dark-bg-tertiary: #3d3249;
+  --dark-bg-card: #2a1f3d;
+  --dark-bg-surface: #241d33;
+  --dark-bg-hover: #342847;
+  
+  --dark-bg-accent-primary: #4c51bf;
+  --dark-bg-accent-secondary: #6366f1;
+  --dark-bg-accent-tertiary: #8b5cf6;
+  
+  --dark-text-primary: #f8fafc;
+  --dark-text-secondary: #e2e8f0;
+  --dark-text-tertiary: #cbd5e1;
+  --dark-text-muted: #94a3b8;
+  --dark-text-disabled: #64748b;
+  
+  --dark-text-accent: #c4b5fd;
+  --dark-text-accent-hover: #a78bfa;
+  --dark-text-link: #a855f7;
+  --dark-text-link-hover: #9333ea;
+  
+  --dark-border-primary: #3d3249;
+  --dark-border-secondary: #4a4458;
+  --dark-border-accent: #6366f1;
+  
+  /* Shared Gradient Colors */
+  --gradient-start: #4c51bf;
+  --gradient-mid: #8b5cf6;
+  --gradient-end: #a855f7;
+  --gradient-bg: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+  
+  /* Using light-dark() function */
+  --bg-primary: light-dark(var(--light-bg-primary), var(--dark-bg-primary));
+  --bg-secondary: light-dark(var(--light-bg-secondary), var(--dark-bg-secondary));
+  --bg-tertiary: light-dark(var(--light-bg-tertiary), var(--dark-bg-tertiary));
+  --bg-card: light-dark(var(--light-bg-card), var(--dark-bg-card));
+  --bg-surface: light-dark(var(--light-bg-surface), var(--dark-bg-surface));
+  --bg-hover: light-dark(var(--light-bg-hover), var(--dark-bg-hover));
+  
+  --bg-accent-primary: light-dark(var(--light-bg-accent-primary), var(--dark-bg-accent-primary));
+  --bg-accent-secondary: light-dark(var(--light-bg-accent-secondary), var(--dark-bg-accent-secondary));
+  --bg-accent-tertiary: light-dark(var(--light-bg-accent-tertiary), var(--dark-bg-accent-tertiary));
+  
+  --text-primary: light-dark(var(--light-text-primary), var(--dark-text-primary));
+  --text-secondary: light-dark(var(--light-text-secondary), var(--dark-text-secondary));
+  --text-tertiary: light-dark(var(--light-text-tertiary), var(--dark-text-tertiary));
+  --text-muted: light-dark(var(--light-text-muted), var(--dark-text-muted));
+  --text-disabled: light-dark(var(--light-text-disabled), var(--dark-text-disabled));
+  
+  --text-accent: light-dark(var(--light-text-accent), var(--dark-text-accent));
+  --text-accent-hover: light-dark(var(--light-text-accent-hover), var(--dark-text-accent-hover));
+  --text-link: light-dark(var(--light-text-link), var(--dark-text-link));
+  --text-link-hover: light-dark(var(--light-text-link-hover), var(--dark-text-link-hover));
+  
+  --border-primary: light-dark(var(--light-border-primary), var(--dark-border-primary));
+  --border-secondary: light-dark(var(--light-border-secondary), var(--dark-border-secondary));
+  --border-accent: light-dark(var(--light-border-accent), var(--dark-border-accent));
+  
+}
+ html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  text-decoration: none;
 }

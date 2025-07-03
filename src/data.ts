@@ -98,5 +98,109 @@ export const blogs: BlogType[] = [
         email: "morgan.patel@example.com"
       }
     ]
+  },
+  {
+    id: 102,
+    name: "React Performance Optimization Techniques",
+    tagline: "Speed up your React apps with these proven tips",
+    publicationDate: "2025-05-10",
+    rating: 4.5,
+    numComments: 15,
+    body: `
+      React is powerful, but performance can suffer as your app grows. In this blog, we cover memoization, code splitting, and other strategies to keep your UI fast and responsive.
+
+      Memoization with React.memo and useMemo can prevent unnecessary re-renders. Code splitting with React.lazy and Suspense helps reduce initial load times.
+
+      Profiling tools like React DevTools can help you identify bottlenecks. Always measure before optimizing!
+
+      Avoid unnecessary state in parent components and use context wisely. These small changes can have a big impact on performance.
+
+      In summary, a few best practices can make your React apps feel snappy and modern.
+    `,
+    authors: [
+      {
+        id: 5,
+        name: "Jamie Lee",
+        email: "jamie.lee@example.com"
+      }
+    ]
+  },
+  {
+    id: 103,
+    name: "Understanding Async/Await in JavaScript",
+    tagline: "Master asynchronous code with ease",
+    publicationDate: "2025-04-18",
+    rating: 4.8,
+    numComments: 30,
+    body: `
+      Async/await syntax makes asynchronous JavaScript code easier to read and maintain. It builds on top of Promises and allows you to write code that looks synchronous.
+
+      To use async/await, declare a function as async and use await inside it to pause execution until a Promise resolves.
+
+      Error handling is straightforward with try/catch blocks. This makes debugging async code much simpler.
+
+      Remember, await only works inside async functions. Use it for API calls, timers, and any function returning a Promise.
+
+      Embrace async/await to write cleaner, more reliable JavaScript code.
+    `,
+    authors: [
+      {
+        id: 6,
+        name: "Morgan Patel",
+        email: "morgan.patel@example.com"
+      }
+    ]
+  },
+  {
+    id: 102,
+    name: "React Performance Optimization Techniques",
+    tagline: "Speed up your React apps with these proven tips",
+    publicationDate: "2025-05-10",
+    rating: 4.5,
+    numComments: 15,
+    body: `
+      React is powerful, but performance can suffer as your app grows. In this blog, we cover memoization, code splitting, and other strategies to keep your UI fast and responsive.
+
+      Memoization with React.memo and useMemo can prevent unnecessary re-renders. Code splitting with React.lazy and Suspense helps reduce initial load times.
+
+      Profiling tools like React DevTools can help you identify bottlenecks. Always measure before optimizing!
+
+      Avoid unnecessary state in parent components and use context wisely. These small changes can have a big impact on performance.
+
+      In summary, a few best practices can make your React apps feel snappy and modern.
+    `,
+    authors: [
+      {
+        id: 5,
+        name: "Jamie Lee",
+        email: "jamie.lee@example.com"
+      }
+    ]
+  },
+  {
+    id: 103,
+    name: "Understanding Async/Await in JavaScript",
+    tagline: "Master asynchronous code with ease",
+    publicationDate: "2025-04-18",
+    rating: 4.8,
+    numComments: 30,
+    body: `
+      Async/await syntax makes asynchronous JavaScript code easier to read and maintain. It builds on top of Promises and allows you to write code that looks synchronous.
+
+      To use async/await, declare a function as async and use await inside it to pause execution until a Promise resolves.
+
+      Error handling is straightforward with try/catch blocks. This makes debugging async code much simpler.
+
+      Remember, await only works inside async functions. Use it for API calls, timers, and any function returning a Promise.
+
+      Embrace async/await to write cleaner, more reliable JavaScript code.
+    `,
+    authors: [
+      {
+        id: 6,
+        name: "Morgan Patel",
+        email: "morgan.patel@example.com"
+      }
+    ]
   }
 ];
