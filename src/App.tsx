@@ -3,6 +3,7 @@ import Blog from "./pages/blog/Blog";
 import { Routes, Route, BrowserRouter } from "react-router";
 import { blogs, sampleBlog } from "./data";
 import MainLayout from "./layouts/MainLayout";
+import CreateBlogForm from "./components/CreateBlogForm/CreateBlogForm";
 
 const basename = import.meta.env.VITE_BASENAME || "/blogs-fe";
 
@@ -18,6 +19,7 @@ function App() {
             element={<Blog blog={sampleBlog} />}
           />
         </Route>
+        <Route path="create-blog" element={<CreateBlogForm />} />
       </Routes>
     </BrowserRouter>
   )

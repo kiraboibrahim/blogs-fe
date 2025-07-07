@@ -1,0 +1,88 @@
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.headerTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.headerSubTitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.formContainer {
+    background: var(--bg-card);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-primary);
+}
+
+.formGgroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroupLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.formGroupField {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.formGroupField:focus {
+    outline: none;
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 3px rgba(163, 85, 247, 0.1);
+}
+
+.blogBodyText {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.dateInput {
+    cursor: pointer;
+}
+
+.submitBtn {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(163, 85, 247, 0.3);
+}
+
+.submitBtn:active {
+    transform: translateY(0);
+}

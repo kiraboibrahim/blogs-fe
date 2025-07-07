@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Entry</title>
+    <style>
+        :root {
+            /* Light and Dark color definitions */
+            --light-bg-primary: #ffffff;
+            --light-bg-secondary: #f8fafc;
+            --light-bg-tertiary: #f1f5f9;
+            --light-bg-card: #ffffff;
+            --light-bg-surface: #fefeff;
+            --light-bg-hover: #f1f5f9;
+            
+            --light-bg-accent-primary: #f3f4f6;
+            --light-bg-accent-secondary: #e5e7eb;
+            --light-bg-accent-tertiary: #f9fafb;
+            
+            --light-text-primary: #1e293b;
+            --light-text-secondary: #334155;
+            --light-text-tertiary: #475569;
+            --light-text-muted: #64748b;
+            --light-text-disabled: #94a3b8;
+            
+            --light-text-accent: #6366f1;
+            --light-text-accent-hover: #4f46e5;
+            --light-text-link: #8b5cf6;
+            --light-text-link-hover: #7c3aed;
+            
+            --light-border-primary: #e2e8f0;
+            --light-border-secondary: #cbd5e1;
+            --light-border-accent: #a855f7;
+            
+            --dark-bg-primary: #1a1625;
+            --dark-bg-secondary: #2d2438;
+            --dark-bg-tertiary: #3d3249;
+            --dark-bg-card: #2a1f3d;
+            --dark-bg-surface: #241d33;
+            --dark-bg-hover: #342847;
+            
+            --dark-bg-accent-primary: #4c51bf;
+            --dark-bg-accent-secondary: #6366f1;
+            --dark-bg-accent-tertiary: #8b5cf6;
+            
+            --dark-text-primary: #f8fafc;
+            --dark-text-secondary: #e2e8f0;
+            --dark-text-tertiary: #cbd5e1;
+            --dark-text-muted: #94a3b8;
+            --dark-text-disabled: #64748b;
+            
+            --dark-text-accent: #c4b5fd;
+            --dark-text-accent-hover: #a78bfa;
+            --dark-text-link: #a855f7;
+            --dark-text-link-hover: #9333ea;
+            
+            --dark-border-primary: #3d3249;
+            --dark-border-secondary: #4a4458;
+            --dark-border-accent: #6366f1;
+            
+            /* Shared Gradient Colors */
+            --gradient-start: #4c51bf;
+            --gradient-mid: #8b5cf6;
+            --gradient-end: #a855f7;
+        }
+
+        /* Light mode (default) */
+        body {
+            --bg-primary: var(--light-bg-primary);
+            --bg-secondary: var(--light-bg-secondary);
+            --bg-card: var(--light-bg-card);
+            --bg-surface: var(--light-bg-surface);
+            --bg-hover: var(--light-bg-hover);
+            --bg-accent-primary: var(--light-bg-accent-primary);
+            --text-primary: var(--light-text-primary);
+            --text-secondary: var(--light-text-secondary);
+            --text-tertiary: var(--light-text-tertiary);
+            --text-muted: var(--light-text-muted);
+            --text-accent: var(--light-text-accent);
+            --text-accent-hover: var(--light-text-accent-hover);
+            --border-primary: var(--light-border-primary);
+            --border-secondary: var(--light-border-secondary);
+            --border-accent: var(--light-border-accent);
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            --bg-primary: var(--dark-bg-primary);
+            --bg-secondary: var(--dark-bg-secondary);
+            --bg-card: var(--dark-bg-card);
+            --bg-surface: var(--dark-bg-surface);
+            --bg-hover: var(--dark-bg-hover);
+            --bg-accent-primary: var(--dark-bg-accent-primary);
+            --text-primary: var(--dark-text-primary);
+            --text-secondary: var(--dark-text-secondary);
+            --text-tertiary: var(--dark-text-tertiary);
+            --text-muted: var(--dark-text-muted);
+            --text-accent: var(--dark-text-accent);
+            --text-accent-hover: var(--dark-text-accent-hover);
+            --border-primary: var(--dark-border-primary);
+            --border-secondary: var(--dark-border-secondary);
+            --border-accent: var(--dark-border-accent);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--border-accent);
+        }
+
+        .form-container {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-primary);
+            border-radius: 0.5rem;
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--border-accent);
+            box-shadow: 0 0 0 3px rgba(163, 85, 247, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input[type="date"] {
+            cursor: pointer;
+        }
+
+        .form-group input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .form-group input[type="number"]::-webkit-outer-spin-button,
+        .form-group input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-row-three {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .authors-section {
+            border: 2px solid var(--border-primary);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background: var(--bg-surface);
+        }
+
+        .authors-section h3 {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .author-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .author-item:last-child {
+            border-bottom: none;
+        }
+
+        .author-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+
+        .author-item label {
+            margin: 0;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .author-email {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .add-author-btn {
+            background: var(--bg-accent-primary);
+            color: var(--text-accent);
+            border: 2px solid var(--border-accent);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .add-author-btn:hover {
+            background: var(--text-accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(163, 85, 247, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .form-row,
+            .form-row-three {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation for form elements */
+        .form-group {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Create Blog Entry</h1>
+            <p>Share your thoughts with the world</p>
+        </div>
+
+        <div class="form-container">
+            <form id="blogForm">
+                <div class="form-group">
+                    <label for="blog">Blog *</label>
+                    <select id="blog" name="blog" required>
+                        <option value="">Select a blog...</option>
+                        <option value="tech-blog">Tech Blog - Latest in Technology</option>
+                        <option value="lifestyle-blog">Lifestyle Blog - Living Your Best Life</option>
+                        <option value="travel-blog">Travel Blog - Adventures Around the World</option>
+                        <option value="food-blog">Food Blog - Culinary Adventures</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="headline">Headline *</label>
+                    <input type="text" id="headline" name="headline" placeholder="Enter your compelling headline..." required maxlength="255">
+                </div>
+
+                <div class="form-group">
+                    <label for="body_text">Body Text *</label>
+                    <textarea id="body_text" name="body_text" placeholder="Write your blog post content here..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pub_date">Publication Date *</label>
+                        <input type="date" id="pub_date" name="pub_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod_date">Modified Date *</label>
+                        <input type="date" id="mod_date" name="mod_date" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Authors *</label>
+                    <div class="authors-section">
+                        <h3>Select Authors</h3>
+                        <div id="authors-list">
+                            <div class="author-item">
+                                <input type="checkbox" id="author1" name="authors" value="1">
+                                <label for="author1">
+                                    John Doe
+                                    <span class="author-email">john.doe@example.com</span>
+                                </label>
+                            </div>
+                            <div class="author-item">
+                                <input type="checkbox" id="author2" name="authors" value="2">
+                                <label for="author2">
+                                    Jane Smith
+                                    <span class="author-email">jane.smith@example.com</span>
+                                </label>
+                            </div>
+                            <div class="author-item">
+                                <input type="checkbox" id="author3" name="authors" value="3">
+                                <label for="author3">
+                                    Mike Johnson
+                                    <span class="author-email">mike.j@example.com</span>
+                                </label>
+                            </div>
+                            <div class="author-item">
+                                <input type="checkbox" id="author4" name="authors" value="4">
+                                <label for="author4">
+                                    Sarah Wilson
+                                    <span class="author-email">sarah.w@example.com</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="button" class="add-author-btn" onclick="addNewAuthor()">+ Add New Author</button>
+                    </div>
+                </div>
+
+                <div class="form-row-three">
+                    <div class="form-group">
+                        <label for="number_of_comments">Comments</label>
+                        <input type="number" id="number_of_comments" name="number_of_comments" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="number_of_pingbacks">Pingbacks</label>
+                        <input type="number" id="number_of_pingbacks" name="number_of_pingbacks" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select id="rating" name="rating">
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5" selected>5 Stars</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Blog Entry</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set default dates to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pub_date').value = today;
+        document.getElementById('mod_date').value = today;
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-icon').textContent = '☀️';
+        }
+
+        // Save theme preference
+        document.body.addEventListener('classchange', function() {
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Add new author functionality
+        function addNewAuthor() {
+            const name = prompt('Enter author name:');
+            const email = prompt('Enter author email:');
+            
+            if (name && email) {
+                const authorsList = document.getElementById('authors-list');
+                const authorCount = authorsList.children.length + 1;
+                
+                const authorItem = document.createElement('div');
+                authorItem.className = 'author-item';
+                authorItem.innerHTML = `
+                    <input type="checkbox" id="author${authorCount}" name="authors" value="${authorCount}">
+                    <label for="author${authorCount}">
+                        ${name}
+                        <span class="author-email">${email}</span>
+                    </label>
+                `;
+                
+                authorsList.appendChild(authorItem);
+            }
+        }
+
+        // Form submission
+        document.getElementById('blogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get selected authors
+            const selectedAuthors = Array.from(document.querySelectorAll('input[name="authors"]:checked'))
+                .map(cb => cb.value);
+            
+            if (selectedAuthors.length === 0) {
+                alert('Please select at least one author.');
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            data.authors = selectedAuthors;
+            
+            // Here you would typically send the data to your Django backend
+            console.log('Blog entry data:', data);
+            
+            // Show success message
+            alert('Blog entry created successfully!');
+            
+            // Reset form
+            this.reset();
+            document.getElementById('pub_date').value = today;
+            document.getElementById('mod_date').value = today;
+            document.querySelectorAll('input[name="authors"]').forEach(cb => cb.checked = false);
+        });
+    </script>
+</body>
+</html>
