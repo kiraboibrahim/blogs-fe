@@ -1,0 +1,17 @@
+
+
+.authorsPage {
+  padding: 2rem;
+}
+
+.authorsList {
+  list-style: none;
+  padding: 0;
+}
+
+.authorCard {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: inherit;
+  border-radius: 8px;
+}

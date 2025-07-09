@@ -41,7 +41,7 @@
     color: #f0b90b;
 }
 .commentsIcon {
-    color: #f04e4e;
+    color: #5a63e2;
 }
 .blogName {
     font-size: 1rem;
@@ -81,4 +81,8 @@
 .blogReadMoreButton:hover {
     background-color: var(--bg-accent-secondary);
     color: var(--text-primary);
+}
+.cardLink {
+  text-decoration: none;
+  color: inherit;
 }
