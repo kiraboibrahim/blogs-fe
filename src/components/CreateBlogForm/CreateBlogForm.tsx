@@ -1,32 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CreateBlog.module.css";
-import createBlog from "../../services/createBlog";
-import { BeatLoader } from "react-spinners";
+import createBlogEntry from "../../services/createBlog";
+import { BeatLoader, ClipLoader } from "react-spinners";
+import getAuthors from "../../services/getAuthors";
+import getBlogs from "../../services/getBlogs";
+import type Author from "../../types/Author";
+import type CreateBlog from "../../types/CreateBlog";
+
+interface Blog {
+    id: number;
+    name: string;
+    tagline: string;
+}
 
 export default function CreateBlogForm() {
-    const [blogName, setBlogName] = useState("");
     const [headline, setHeadline] = useState("");
     const [body, setBody] = useState("");
     const [publicationDate, setPublicationDate] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [authorsLoading, setAuthorsLoading] = useState(false);
+    const [blogsLoading, setBlogsLoading] = useState(false);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [authors, setAuthors] = useState<Author[]>([]);
+    const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
+    const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
+
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-        const blogData = {
-            blogName,
+        const blogEntryData = {
+            blog: selectedBlog?.id || null,
             headline,
-            body,
-            publicationDate
+            body_text: body,
+            publication_date: publicationDate,
+            authors: selectedAuthors.map(author => author.id)
         }
-        setLoading(true);
+        console.log(blogEntryData);
+        setIsSubmitting(true);
         try {
-            await createBlog(blogData);
+            await createBlogEntry(blogEntryData);
         } catch(err) {
 
         } finally {
-            setLoading(false);
+            setIsSubmitting(false);
         }
-        console.log(blogData);
+        console.log(blogEntryData);
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setAuthorsLoading(true);
+            setBlogsLoading(true);
+            try {
+                const authors = await getAuthors();
+                const blogs = await getBlogs();
+                setBlogs(blogs);
+                setAuthors(authors);
+            } catch (error) {
+                console.error("Error fetching authors:", error);
+            } finally {
+                setAuthorsLoading(false);
+                setBlogsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div className={styles.header}>
             <h2 className={styles.headerTitle}>Create Blog Entry</h2>
@@ -35,9 +74,31 @@ export default function CreateBlogForm() {
         
         <div className={styles.formGgroup}>
             <label htmlFor="blog-name" className={styles.formGroupLabel}>Blog</label>
-            <span>{blogName}</span>
-            <input id="blog-name" className={styles.formGroupField} name="blog-name" type="text" placeholder="Blog name" value={blogName} onChange={(event) => setBlogName(event.target.value)} required/>
+            <ClipLoader loading={blogsLoading} size={20} color="#000" />
+            <select id="blog-name" className={styles.formGroupField} name="blog-name" value={selectedBlog?.id || ""} onChange={(event) => setSelectedBlog(blogs.find(b => b.id === Number(event.target.value)) || null)} required>
+                <option value="">Select a blog</option>
+                {
+                    blogs.map((blog) => (
+                        <option key={blog.id} value={blog.id}>{blog.name}</option>
+                    ))
+                }
+            </select>
         </div>
+        <div className={styles.formGgroup}>
+            <label className={styles.formGroupLabel}>Authors</label>
+            <ClipLoader loading={authorsLoading} size={20} color="#000" />
+            <select className={styles.formGroupField} name="authors" multiple onChange={(event) => {
+                const selectedOptionValues = Array.from(event.target.selectedOptions).map(option => option.value);
+                setSelectedAuthors(authors.filter(author => selectedOptionValues.includes(String(author.id))));
+            }} value={selectedAuthors.map(author => String(author.id))}>
+                {
+                    authors.map((author) => (
+                        <option key={author.id} value={author.id}>{author.name}</option>
+                    ))
+                }
+            </select>
+        </div>
+
         <div className={styles.formGgroup}>
             <label className={styles.formGroupLabel}>Headline</label>
             <input className={styles.formGroupField}name="headline" type="text" placeholder="Enter your compelling headline..." value={headline} onChange={(event) => setHeadline(event.target.value)}required/>
@@ -51,6 +112,6 @@ export default function CreateBlogForm() {
             <label className={styles.formGroupLabel}>Publication Date</label>
             <input type="date" required className={`${styles.dateInput} ${styles.formGroupField}`} value={publicationDate} onChange={(event) => setPublicationDate(event.target.value)} />
         </div>
-        <button className={styles.submitBtn} type="submit" disabled={loading}>{loading ? <BeatLoader /> : "Create Blog Entry"}</button>
+        <button className={styles.submitBtn} type="submit" disabled={isSubmitting}>{isSubmitting ? <BeatLoader /> : "Create Blog Entry"}</button>
     </form>
 }

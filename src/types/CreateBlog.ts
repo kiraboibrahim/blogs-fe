@@ -1,6 +1,8 @@
+
 export default interface CreateBlog {
-    blogName: string;
+    blog: number | null;
     headline: string;
-    body: string;
-    publicationDate: string;
+    body_text: string;
+    publication_date: string;
+    authors: number[];
 }

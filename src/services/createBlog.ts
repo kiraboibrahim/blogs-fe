@@ -15,8 +15,10 @@ async function sleep(duration_ms: number) {
         setTimeout(() => resolve(null), duration_ms);
     })
 }
-export default async function createBlog(blogData: CreateBlog) {
-    /**const endpoint = `${API_BASE_URL}/blogs`;
+export default async function createBlogEntry(blogData: CreateBlog) {
+    
+    const endpoint = `${API_BASE_URL}/blogs/${blogData.blog}/entries/`;
+    delete blogData.blog;
     const response = await fetch(endpoint, {body: JSON.stringify(blogData), method: "post", headers: {
         'Content-Type': 'application/json'
     }});
@@ -32,7 +34,4 @@ export default async function createBlog(blogData: CreateBlog) {
         throw new InternalServerError(responseText);
     }
     throw new UnknownError(responseText);
-    **/
-   await sleep(5000);
-   return null;
 }
