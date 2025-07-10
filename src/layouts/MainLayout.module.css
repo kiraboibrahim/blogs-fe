@@ -20,7 +20,16 @@
 }
 
 .navItem {
-    margin-left: 20px;
+    margin-left: auto;
+     text-decoration: none;
+    color: inherit;
+    padding: 0.5rem 1rem;
+    display: flex;
+    transition: color 0.2s ease;
+}
+
+.navItem a:hover {
+    color: #0077ff;
 }
 
 .mainContent {
